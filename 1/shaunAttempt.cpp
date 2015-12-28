@@ -3,6 +3,7 @@
 #include <math.h>
 #include <fcntl.h>
 #include <cmath>
+#include <cstdlib>
 #define PI 3.1416
 
 using namespace std;
@@ -51,6 +52,8 @@ int main()
 	}
 	
 	// a) print the reprint of the data from the measurements
+	printf("Measurement Values");
+	printf("\n");
 	fprintf(fp2,"Measurement Values");
 	fprintf(fp2,"\n");
 	for (r=0; r<=24; ++r)
@@ -59,17 +62,22 @@ int main()
 		{
 			if (r==0 && c==0)
 			{
+                     printf("%s", st);     
 				fprintf(fp2,"%s", st);
 			}
 			else
 			{
+                printf("%6.2f",table[r][c]);
                 fprintf(fp2,"%6.2f",table[r][c]);
             }
+            printf("\t");
             fprintf(fp2, "\t");
 		}
+        printf("\n");	
         fprintf(fp2, "\n");	
 	}
-	fprintf(fp2, "\n\n\n");
+	printf("\n\n");
+	fprintf(fp2, "\n\n");
 	
 	
 	/*Value for Theoretical*/
@@ -91,6 +99,8 @@ int main()
 	}
 	
 	// b) print the theoretical values of the sound pressure level at each coordinate
+	printf("Theoretical Values");
+	printf("\n");
 	fprintf(fp2,"Theoretical Values");
 	fprintf(fp2,"\n");
     for (r=0; r<=24; ++r)
@@ -99,23 +109,29 @@ int main()
 		{
 			if (r==0 && c==0)
 			{
+				printf("%s", st);
 				fprintf(fp2,"%s", st);
 			}
 			else if (r==0 || c == 0)
 			{
                  // this is for y and x values
+                 printf("%6.2f",table[r][c]);
                  fprintf(fp2,"%6.2f",table[r][c]);
                  }
 			else
 			{
                 // print theoretical values
+                printf("%6.2f",Ttheory[r][c]);
                 fprintf(fp2,"%6.2f",Ttheory[r][c]);
             }
+            printf("\t");
             fprintf(fp2, "\t");
 		}
+        printf("\n");	
         fprintf(fp2, "\n");	
 	}
-	fprintf(fp2, "\n\n\n");
+	printf("\n\n");
+	fprintf(fp2, "\n\n");
 	
 	/*Value of error*/
 	for (r=0; r<=24; ++r)
@@ -135,6 +151,8 @@ int main()
 	}
 	
 	// c) print the error of each measurement compared to the theoretical value
+	printf("Error Values");
+	printf("\n");
 	fprintf(fp2,"Error Values");
 	fprintf(fp2,"\n");
 	for (r=0; r<=24; ++r)
@@ -143,23 +161,29 @@ int main()
 		{
 			if (r==0 && c==0)
 			{
+				printf("%s", st);
 				fprintf(fp2,"%s", st);
 			}
 			else if (r==0 || c == 0)
 			{
                  // this is for y and x values
+                 printf("%6.2f",table[r][c]);
                  fprintf(fp2,"%6.2f",table[r][c]);
                  }
 			else
 			{
                 // print theoretical values
+                printf("%6.2f",Terror[r][c]);
                 fprintf(fp2,"%6.2f",Terror[r][c]);
             }
+            printf("\t");
             fprintf(fp2, "\t");
 		}
+        printf("\n");
         fprintf(fp2, "\n");	
 	}
-	fprintf(fp2, "\n\n\n");
+	printf("\n\n");
+	fprintf(fp2, "\n\n");
 	
 	/*Value of absolute error*/
 	for (r=0; r<=24; ++r)
@@ -196,6 +220,8 @@ int main()
 	}
 	
 	// d) print the percentage of absolute error of each measurement
+	printf("Absolute Percent Error");
+	printf("\n");
 	fprintf(fp2,"Absolute Percent Error");
 	fprintf(fp2,"\n");
 	for (r=0; r<=24; ++r)
@@ -204,27 +230,32 @@ int main()
 		{
 			if (r==0 && c==0)
 			{
+				printf("%s", st);
 				fprintf(fp2,"%s", st);
 			}
 			else if (r==0 || c == 0)
 			{
                  // this is for y and x values
+                 printf("%6.2f",table[r][c]);
                  fprintf(fp2,"%6.2f",table[r][c]);
                  }
 			else
 			{
                 // print theoretical values
+                printf("%6.2f",Tabspercerror[r][c]);
                 fprintf(fp2,"%6.2f",Tabspercerror[r][c]);
             }
+            printf("\t");
             fprintf(fp2, "\t");
 		}
+        printf("\n");
         fprintf(fp2, "\n");	
 	}
-	fprintf(fp2, "\n\n\n");
+	printf("\n\n");
+	fprintf(fp2, "\n\n");
 	
 		
 	/*Finding Max Error*/
-
 	float max,xmax,ymax;
 
 	for (r=1; r<=24; ++r)
@@ -247,8 +278,7 @@ int main()
 		}	
 	}
 	
-		/*Finding Min Error*/
-
+  /*Finding Min Error*/
 	float min,xmin,ymin;
 	
 	for (r=1; r<=24; ++r)
@@ -272,7 +302,6 @@ int main()
 	}
 	
 	/*Total Error*/
-	
 	float TotalError;
 	
 	for (r=1; r<=24; ++r)
@@ -293,7 +322,6 @@ int main()
 	
 	
 	/*Total Absolute Error*/
-	
 	float TotalAbsError;
 	
 	for (r=1; r<=24; ++r)
@@ -319,6 +347,7 @@ int main()
 	AverageAbsolute=TotalAbsError/192;
 	
 	// e) print the maximum error, the minimum error, the average error, and the average of the absolute error of the measurements
+	printf("The Maximum Error is = %.2f at x=%.1f y=%.1f\nThe Minimum Error is = %.2f at x=%.1f y=%.1f\nThe Average Error is = %.2f\nThe Average of the absolute error is = %.2f\n\n",max,xmax,ymax,min,xmin,ymin,AverageError,AverageAbsolute);
 	fprintf(fp2,"The Maximum Error is = %.2f at x=%.1f y=%.1f\nThe Minimum Error is = %.2f at x=%.1f y=%.1f\nThe Average Error is = %.2f\nThe Average of the absolute error is = %.2f\n\n",max,xmax,ymax,min,xmin,ymin,AverageError,AverageAbsolute);
 	
     fclose(fp1);
@@ -371,3 +400,4 @@ float PercentAbsError(float abserror,float actual)
 	
 	return(Percent);
 }
+
